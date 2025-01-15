@@ -1,0 +1,40 @@
+<form>
+    <p>Cadastrar Cliente</p>
+    <input type="text" placeholder="Nome" class="form-control" name="nome" [(ngModel)]="cliente.nome">
+    <input type="text" placeholder="CPF" class="form-control" name="cpf" [(ngModel)]="cliente.cpf">
+    <input type="text" placeholder="Telefone" class="form-control" name="telefone" [(ngModel)]="cliente.telefone">
+    <input type="text" placeholder="Email" class="form-control" name="email" [(ngModel)]="cliente.email">
+
+    <input type="button" value="Cadastrar" *ngIf="btnCadastro" class="btn btn-primary" (click)="cadastrar()">
+    <input type="button" value="Alterar" *ngIf="!btnCadastro" class="btn btn-warning" (click)="editar()">
+    <input type="button" value="Remover" *ngIf="!btnCadastro" class="btn btn-danger" (click)="remover()">
+    <input type="button" value="Cancelar" *ngIf="!btnCadastro" class="btn btn-secondary" (click)="cancelar()">
+</form>
+
+<div *ngIf="btnCadastro">
+    <h3>Clientes Cadastrados</h3>
+</div>
+
+<table class="table" *ngIf="tabela">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Nome</th>
+            <th>CPF</th>
+            <th>Telefone</th>
+            <th>Email</th>
+            <th>Selecionar</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let c of clientes; index as i">
+            <td>{{i+1}}</td>
+            <td>{{c.nome}}</td>
+            <td>{{c.cpf}}</td>
+            <td>{{c.telefone}}</td>
+            <td>{{c.email}}</td>
+            <td><button class="btn btn-success" (click)="selecionarCliente(i)">Selecionar</button></td>
+        </tr>
+    </tbody>
+</table>
